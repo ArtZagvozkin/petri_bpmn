@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="16.3.0">
+  <bpmn:process id="id_5fcaada8-7ad7-4723-bad0-fb3923ddc56e" name="Обслуживание банковской карты">
+    <bpmn:userTask id="ID29" name="Прекращение обслуживание карты">
+      <bpmn:incoming>ID33</bpmn:incoming>
+      <bpmn:outgoing>ID35</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ID34" name="Проверка соотношения приходов/расходов">
+      <bpmn:incoming>ID35</bpmn:incoming>
+      <bpmn:outgoing>ID37</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ID42" name="Оповещение клиента о необходимости платежа">
+      <bpmn:incoming>ID43</bpmn:incoming>
+      <bpmn:incoming>ID48</bpmn:incoming>
+      <bpmn:outgoing>ID49</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID36" gatewayDirection="Diverging">
+      <bpmn:incoming>ID37</bpmn:incoming>
+      <bpmn:outgoing>ID39</bpmn:outgoing>
+      <bpmn:outgoing>ID43</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ID46" gatewayDirection="Diverging">
+      <bpmn:incoming>ID50</bpmn:incoming>
+      <bpmn:outgoing>ID54</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1duc34e</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ID47" gatewayDirection="Diverging">
+      <bpmn:incoming>ID49</bpmn:incoming>
+      <bpmn:outgoing>ID50</bpmn:outgoing>
+      <bpmn:outgoing>ID52</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="ID38" name="Возвращение разницы клиенту">
+      <bpmn:incoming>ID39</bpmn:incoming>
+      <bpmn:outgoing>ID41</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="ID51" name="">
+      <bpmn:incoming>ID52</bpmn:incoming>
+      <bpmn:terminateEventDefinition />
+    </bpmn:endEvent>
+    <bpmn:userTask id="ID11" name="Запрос на платеж/пополнение">
+      <bpmn:incoming>ID18</bpmn:incoming>
+      <bpmn:incoming>ID32</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qoqe4r</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ID26" name="Проверка периода действия карты">
+      <bpmn:incoming>Flow_0qoqe4r</bpmn:incoming>
+      <bpmn:outgoing>ID31</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID30" gatewayDirection="Diverging">
+      <bpmn:incoming>ID31</bpmn:incoming>
+      <bpmn:outgoing>ID32</bpmn:outgoing>
+      <bpmn:outgoing>ID33</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:intermediateCatchEvent id="Event_1fcnyuj">
+      <bpmn:incoming>Flow_1duc34e</bpmn:incoming>
+      <bpmn:outgoing>ID48</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_14e45ym" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:userTask id="ID53" name="Передача долга коллекторскому агенству">
+      <bpmn:incoming>ID54</bpmn:incoming>
+      <bpmn:outgoing>ID56</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="ID55" name="">
+      <bpmn:incoming>ID56</bpmn:incoming>
+      <bpmn:terminateEventDefinition />
+    </bpmn:endEvent>
+    <bpmn:userTask id="ID10" name="Активация карты">
+      <bpmn:incoming>ID17</bpmn:incoming>
+      <bpmn:outgoing>ID18</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID7" gatewayDirection="Diverging">
+      <bpmn:incoming>ID15</bpmn:incoming>
+      <bpmn:outgoing>ID16</bpmn:outgoing>
+      <bpmn:outgoing>ID17</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="ID9" name="">
+      <bpmn:incoming>ID16</bpmn:incoming>
+      <bpmn:terminateEventDefinition />
+    </bpmn:endEvent>
+    <bpmn:startEvent id="ID2" name="Начало">
+      <bpmn:outgoing>ID13</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="ID5" name="Рассмотрение заявки">
+      <bpmn:incoming>ID14</bpmn:incoming>
+      <bpmn:outgoing>ID15</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ID6" name="Регистрация заявки">
+      <bpmn:incoming>ID13</bpmn:incoming>
+      <bpmn:outgoing>ID14</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="ID40" name="">
+      <bpmn:incoming>ID41</bpmn:incoming>
+      <bpmn:terminateEventDefinition />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="ID33" name="Карта просрочена" sourceRef="ID30" targetRef="ID29" />
+    <bpmn:sequenceFlow id="ID35" sourceRef="ID29" targetRef="ID34" />
+    <bpmn:sequenceFlow id="ID37" sourceRef="ID34" targetRef="ID36" />
+    <bpmn:sequenceFlow id="ID43" name="Баланс отрицательный" sourceRef="ID36" targetRef="ID42" />
+    <bpmn:sequenceFlow id="ID48" sourceRef="Event_1fcnyuj" targetRef="ID42" />
+    <bpmn:sequenceFlow id="ID49" sourceRef="ID42" targetRef="ID47" />
+    <bpmn:sequenceFlow id="ID39" name="Баланс положительный или нулевой" sourceRef="ID36" targetRef="ID38" />
+    <bpmn:sequenceFlow id="ID50" name="Клиент не внес оплату" sourceRef="ID47" targetRef="ID46" />
+    <bpmn:sequenceFlow id="ID54" name="Клиент оповещен более 3-х раз" sourceRef="ID46" targetRef="ID53" />
+    <bpmn:sequenceFlow id="Flow_1duc34e" name="Клиент оповещен менее 3-х раз" sourceRef="ID46" targetRef="Event_1fcnyuj" />
+    <bpmn:sequenceFlow id="ID52" name="Клиент внес оплату" sourceRef="ID47" targetRef="ID51" />
+    <bpmn:sequenceFlow id="ID41" sourceRef="ID38" targetRef="ID40" />
+    <bpmn:sequenceFlow id="ID18" sourceRef="ID10" targetRef="ID11" />
+    <bpmn:sequenceFlow id="ID32" name="Карта не просрочена" sourceRef="ID30" targetRef="ID11" />
+    <bpmn:sequenceFlow id="Flow_0qoqe4r" sourceRef="ID11" targetRef="ID26" />
+    <bpmn:sequenceFlow id="ID31" sourceRef="ID26" targetRef="ID30" />
+    <bpmn:sequenceFlow id="ID56" sourceRef="ID53" targetRef="ID55" />
+    <bpmn:sequenceFlow id="ID17" name="Заявка одобрена" sourceRef="ID7" targetRef="ID10" />
+    <bpmn:sequenceFlow id="ID15" sourceRef="ID5" targetRef="ID7" />
+    <bpmn:sequenceFlow id="ID16" name="Заявка отклонена" sourceRef="ID7" targetRef="ID9" />
+    <bpmn:sequenceFlow id="ID13" sourceRef="ID2" targetRef="ID6" />
+    <bpmn:sequenceFlow id="ID14" sourceRef="ID6" targetRef="ID5" />
+  </bpmn:process>
+  <bpmn:collaboration id="id_6ba8d671-075b-4e73-88cf-a4bd122e97f1">
+    <bpmn:participant id="id_747f079b-efc7-4d3d-a2e6-1fd02bb85e7f" name="Обслуживание банковской карты" processRef="id_5fcaada8-7ad7-4723-bad0-fb3923ddc56e" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="id_6ba8d671-075b-4e73-88cf-a4bd122e97f1">
+      <bpmndi:BPMNShape bpmnElement="id_747f079b-efc7-4d3d-a2e6-1fd02bb85e7f" isHorizontal="true">
+        <omgdc:Bounds x="160" y="80" width="1917" height="2020" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID29">
+        <omgdc:Bounds x="1029" y="1309" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID34">
+        <omgdc:Bounds x="1029" y="1445" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID42">
+        <omgdc:Bounds x="1219" y="1575" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID36" isMarkerVisible="true">
+        <omgdc:Bounds x="1276" y="1462" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID46" isMarkerVisible="true">
+        <omgdc:Bounds x="1096" y="1722" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID47" isMarkerVisible="true">
+        <omgdc:Bounds x="1276" y="1722" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID38">
+        <omgdc:Bounds x="1449" y="1445" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID51">
+        <omgdc:Bounds x="1276" y="1836" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID11">
+        <omgdc:Bounds x="809" y="1059" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID26">
+        <omgdc:Bounds x="809" y="1189" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID30" isMarkerVisible="true">
+        <omgdc:Bounds x="866" y="1326" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0aclvnd_di" bpmnElement="Event_1fcnyuj">
+        <omgdc:Bounds x="1102" y="1598" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID53">
+        <omgdc:Bounds x="1039" y="1839" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID55">
+        <omgdc:Bounds x="1096" y="1966" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID10">
+        <omgdc:Bounds x="1019" y="1059" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID7" isMarkerVisible="true">
+        <omgdc:Bounds x="1076" y="960" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID9">
+        <omgdc:Bounds x="1220" y="960" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID2">
+        <omgdc:Bounds x="492" y="960" width="48" height="48" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="497" y="1008" width="39" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID5">
+        <omgdc:Bounds x="809" y="943" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID6">
+        <omgdc:Bounds x="599" y="943" width="162" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ID40">
+        <omgdc:Bounds x="1686" y="1462" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="ID33">
+        <omgdi:waypoint x="914" y="1350" />
+        <omgdi:waypoint x="1029" y="1350" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="941" y="1320" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID35">
+        <omgdi:waypoint x="1110" y="1391" />
+        <omgdi:waypoint x="1110" y="1445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID37">
+        <omgdi:waypoint x="1191" y="1486" />
+        <omgdi:waypoint x="1276" y="1486" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID43">
+        <omgdi:waypoint x="1300" y="1510" />
+        <omgdi:waypoint x="1300" y="1575" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1210" y="1526" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID49">
+        <omgdi:waypoint x="1300" y="1657" />
+        <omgdi:waypoint x="1300" y="1722" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID54">
+        <omgdi:waypoint x="1120" y="1770" />
+        <omgdi:waypoint x="1120" y="1839" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1027" y="1780" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID56">
+        <omgdi:waypoint x="1120" y="1921" />
+        <omgdi:waypoint x="1120" y="1966" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID39">
+        <omgdi:waypoint x="1324" y="1486" />
+        <omgdi:waypoint x="1449" y="1486" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1339" y="1440" width="81" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID50">
+        <omgdi:waypoint x="1276" y="1746" />
+        <omgdi:waypoint x="1144" y="1746" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1170" y="1716" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID48">
+        <omgdi:waypoint x="1138" y="1616" />
+        <omgdi:waypoint x="1219" y="1616" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="835" y="1610" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID52">
+        <omgdi:waypoint x="1300" y="1770" />
+        <omgdi:waypoint x="1300" y="1836" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1228" y="1786" width="64" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID41">
+        <omgdi:waypoint x="1611" y="1486" />
+        <omgdi:waypoint x="1686" y="1486" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID17">
+        <omgdi:waypoint x="1100" y="1008" />
+        <omgdi:waypoint x="1100" y="1059" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1105" y="1023" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID18">
+        <omgdi:waypoint x="1019" y="1100" />
+        <omgdi:waypoint x="971" y="1100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qoqe4r_di" bpmnElement="Flow_0qoqe4r">
+        <omgdi:waypoint x="890" y="1141" />
+        <omgdi:waypoint x="890" y="1189" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID31">
+        <omgdi:waypoint x="890" y="1271" />
+        <omgdi:waypoint x="890" y="1326" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID32">
+        <omgdi:waypoint x="866" y="1350" />
+        <omgdi:waypoint x="730" y="1350" />
+        <omgdi:waypoint x="730" y="1100" />
+        <omgdi:waypoint x="809" y="1100" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="659" y="1226" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1duc34e_di" bpmnElement="Flow_1duc34e">
+        <omgdi:waypoint x="1120" y="1722" />
+        <omgdi:waypoint x="1120" y="1634" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1026" y="1660" width="87" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID15">
+        <omgdi:waypoint x="971" y="984" />
+        <omgdi:waypoint x="1076" y="984" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID16">
+        <omgdi:waypoint x="1124" y="984" />
+        <omgdi:waypoint x="1220" y="984" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1145" y="956" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID13">
+        <omgdi:waypoint x="540" y="984" />
+        <omgdi:waypoint x="599" y="984" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ID14">
+        <omgdi:waypoint x="761" y="984" />
+        <omgdi:waypoint x="809" y="984" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
